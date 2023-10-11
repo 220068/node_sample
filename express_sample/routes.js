@@ -42,5 +42,6 @@ app.post("/auth",(req,res) => {
 })
 
 
+
 // モジュール化
 module.exports = router
