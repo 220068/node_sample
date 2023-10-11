@@ -2,6 +2,8 @@
 const express = require('express')
 // dotenvモジュール読み込み
 const dotenv = require('dotenv')
+// routerモジュール読み込み
+const routes = require("./routes")
 
 // dotenvの設定読み込み
 dotenv.config()
@@ -11,16 +13,15 @@ const PORT = process.env.PORT
 // サーバ作成
 const app = express()
 
-// GETリクエストの処理
-app.get('/', (req, res) => {
-    // リクエストの処理
-    console.log(req.body)
-    console.log(req.url)
-    console.log(req.query)
+// ミドルウェアの設定
+// publicフォルダを静的コンテンツのフォルダに設定
+app.use(express.static(__dirname + "/public"))
 
-    // レスポンスの処理
-    res.send('Hello!!!!!!')
-})
+// URLエンコード
+app.use(express.urlencoded({extended: true}))
+
+//ルーティングを有効
+app.use(routes)
 
 //　サーバ停止: 起動中のターミナルで Ctrl + C
 // サーバ待機（Listen）
