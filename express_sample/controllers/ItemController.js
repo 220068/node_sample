@@ -1,5 +1,5 @@
 // models/Item.js を読み込む
-const Item = require('../models/item')
+const Item = require('../models/Item')
 
 /**
  * 商品一覧
@@ -29,5 +29,6 @@ exports.detail = (req, res) => {
         title: "商品詳細",
         item: selectItem,
     }
+    // views/item/detail.ejs を表示
     res.render('item/detail', data)
 }
